@@ -20,7 +20,7 @@ public class PeriksaJamak {
 					sb = new StringBuilder();
 				sb.append(line+"\n");
 				if (line.startsWith("msgstr") && line.matches(".*\\b(s)\\b.*"))
-					System.out.println(">> Kesalahan! Seharusnya terjemahan tidak memiliki bentuk kata jamak (s)! <<\n"+sb.toString());
+					System.out.println(">> Kesalahan! Seharusnya target terjemahan tidak memiliki bentuk kata jamak (s)! <<\n"+sb.toString());
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -33,6 +33,10 @@ public class PeriksaJamak {
 	}
 	
 	public static void main(String[] args) {
-		new PeriksaJamak(args[0]);
+		try {
+			new PeriksaJamak(args[0]);
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("Dokumen tidak ditemukan.\n");
+		}
 	}
 }
